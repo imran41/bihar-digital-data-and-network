@@ -2,7 +2,6 @@
   "name": "bdd-bihar-digital-data",
   "version": "1.0.0",
   "description": "Bihar Digital Data – BDD Website with Neon DB enrollment backend",
-  "type": "module",
   "dependencies": {
     "@neondatabase/serverless": "^0.9.0"
   },
