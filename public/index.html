@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BDDN – Bihar Digital Data & Network | Data Analytics & Digital Marketing | Darbhanga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #f0a500;
+      --gold-light: #ffc83c;
+      --gold-pale: #fff8e6;
+      --navy: #0c1a2e;
+      --navy-mid: #162337;
+      --blue-slate: #1e3a5f;
+      --text: #1e2937;
+      --text-mid: #475569;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --border-gold: rgba(240,165,0,0.3);
+      --radius: 14px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.1);
+      --shadow-gold: 0 12px 40px rgba(240,165,0,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Announcement Bar ── */
+    .ann-bar {
+      background: var(--navy);
+      color: #94a3b8;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    .ann-bar strong { color: var(--gold-light); }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      gap: 20px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+    .brand-text { line-height: 1.2; }
+    .brand-text .main { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); }
+    .brand-text .sub { font-size: 0.65rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-weight: 500; font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.07em; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--navy); color: white !important; padding: 10px 22px; border-radius: 8px; transition: background 0.25s !important; }
+    .nav-cta:hover { background: var(--blue-slate) !important; color: white !important; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, #0c1a2e 0%, #1a2f50 55%, #1e3a5f 100%);
+      padding: 110px 70px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(240,165,0,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 70px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(240,165,0,0.15);
+      border: 1px solid rgba(240,165,0,0.3);
+      color: var(--gold-light);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.12;
+      color: white;
+      margin-bottom: 22px;
+    }
+    .hero h1 em { color: var(--gold-light); font-style: italic; }
+    .hero-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy);
+      font-weight: 700;
+      padding: 15px 36px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 0.97rem;
+      box-shadow: var(--shadow-gold);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(240,165,0,0.4); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      font-weight: 500;
+      padding: 15px 32px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 0.97rem;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+    /* Hero Card */
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 36px 30px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-card-title { color: var(--gold-light); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; }
+    .hero-card-stat { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .hero-card-stat:last-child { border-bottom: none; }
+    .hcs-icon { width: 44px; height: 44px; background: rgba(240,165,0,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .hcs-text .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: white; line-height: 1; }
+    .hcs-text .lbl { font-size: 0.78rem; color: #64748b; margin-top: 2px; }
+    .hero-divider { width: 40px; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); border-radius: 2px; margin: 30px 0 22px; }
+    .hero-trust { display: flex; align-items: center; gap: 10px; }
+    .trust-dots { display: flex; }
+    .trust-dot { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg,#667eea,#764ba2); border: 2px solid rgba(255,255,255,0.3); margin-left: -8px; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; color: white; }
+    .trust-dot:first-child { margin-left: 0; }
+    .trust-text { color: #94a3b8; font-size: 0.82rem; }
+    .trust-text strong { color: var(--gold-light); }
+
+    /* ── Section Wrapper ── */
+    .section { padding: 90px 70px; }
+    .section-alt { background: #f1f5f9; }
+    .section-dark { background: var(--navy); }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .label { display: inline-block; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: var(--gold); font-size: 0.78rem; margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--navy); }
+    .section-title.light { color: white; }
+    .section-sub-text { color: var(--text-mid); margin-top: 14px; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .section-sub-text.light { color: #94a3b8; }
+
+    /* ── Stats Strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat {
+      padding: 40px 30px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .stat:last-child { border-right: none; }
+    .stat::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold));
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat:hover::after { opacity: 1; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { color: var(--text-light); font-weight: 600; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; margin-top: 8px; }
+
+    /* ── Courses ── */
+    .course-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 900px; margin: 0 auto; }
+    .course-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.35s;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .course-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--border-gold); }
+    .course-card-top {
+      padding: 36px 32px 28px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .course-icon { font-size: 2.8rem; margin-bottom: 18px; display: block; }
+    .course-card h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--navy); margin-bottom: 10px; }
+    .course-duration { font-size: 0.8rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+    .course-card > .course-body { padding: 24px 32px; flex: 1; }
+    .course-card p { color: var(--text-mid); font-size: 0.95rem; margin-bottom: 16px; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+    .tag { background: var(--gold-pale); color: #92400e; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+    .course-footer { padding: 20px 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .course-fee { font-size: 0.85rem; color: var(--text-light); }
+    .course-fee strong { color: var(--navy); font-size: 1.1rem; font-family: 'Playfair Display', serif; }
+    .course-link { font-size: 0.85rem; font-weight: 600; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .course-link:hover { color: var(--navy); }
+
+    /* Curriculum accordion */
+    .curriculum { margin-top: 12px; }
+    .curr-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+    .curr-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 18px; background: var(--white); cursor: pointer;
+      font-weight: 600; font-size: 0.88rem; color: var(--navy);
+      transition: background 0.2s;
+    }
+    .curr-header:hover { background: var(--gold-pale); }
+    .curr-header .week { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 3px; }
+    .curr-arrow { font-size: 0.8rem; color: var(--text-light); transition: transform 0.3s; flex-shrink: 0; }
+    .curr-item.open .curr-arrow { transform: rotate(180deg); }
+    .curr-body { display: none; padding: 14px 18px; background: #fafafa; border-top: 1px solid var(--border); }
+    .curr-item.open .curr-body { display: block; }
+    .curr-body ul { list-style: none; }
+    .curr-body ul li { font-size: 0.85rem; color: var(--text-mid); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .curr-body ul li::before { content: "›"; color: var(--gold); font-size: 1rem; font-weight: 700; }
+
+    /* ── About ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; max-width: 1100px; margin: 0 auto; }
+    .about-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 18px; }
+    .about-text p { color: var(--text-mid); margin-bottom: 16px; font-size: 0.97rem; line-height: 1.85; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .feat { display: flex; align-items: flex-start; gap: 12px; }
+    .feat-icon { width: 36px; height: 36px; background: var(--gold-pale); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .feat-text .title { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+    .feat-text .desc { font-size: 0.8rem; color: var(--text-light); margin-top: 2px; }
+
+    /* Director Card */
+    .director-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .director-card-top {
+      background: linear-gradient(135deg, var(--navy), var(--blue-slate));
+      padding: 40px 36px 36px;
+      text-align: center;
+      position: relative;
+    }
+    .director-avatar {
+      width: 88px; height: 88px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 25px rgba(240,165,0,0.3);
+    }
+    .director-card-top h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin-bottom: 4px; }
+    .director-card-top .role { color: var(--gold-light); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+    .director-card-body { padding: 30px 36px; }
+    .director-quote { font-style: italic; color: var(--text-mid); font-size: 0.97rem; line-height: 1.8; border-left: 3px solid var(--gold); padding-left: 18px; margin-bottom: 24px; }
+    .director-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .dir-stat { background: var(--gold-pale); border-radius: 10px; padding: 16px; text-align: center; }
+    .dir-stat .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+    .dir-stat .lbl { font-size: 0.75rem; color: #92400e; font-weight: 600; }
+
+    /* ── Why Choose Us ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: all 0.3s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(240,165,0,0.3); transform: translateY(-4px); }
+    .why-icon { width: 52px; height: 52px; background: rgba(240,165,0,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
+    .why-card h4 { color: white; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .why-card p { color: #94a3b8; font-size: 0.88rem; line-height: 1.75; }
+
+    /* ── Testimonials ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+    .testi-card:hover { box-shadow: var(--shadow-md); border-color: var(--border-gold); transform: translateY(-4px); }
+    .testi-stars { color: var(--gold); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testi-text { color: var(--text-mid); font-size: 0.93rem; line-height: 1.8; margin-bottom: 22px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), var(--blue-slate)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+    .testi-name { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+    .testi-meta { font-size: 0.78rem; color: var(--text-light); }
+    .testi-badge { display: inline-block; background: var(--gold-pale); color: #92400e; font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 50px; margin-top: 4px; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; cursor: pointer; background: var(--white);
+      font-weight: 600; font-size: 0.97rem; color: var(--navy);
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: var(--gold-pale); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 24px 22px; color: var(--text-mid); font-size: 0.93rem; line-height: 1.8; background: var(--white); }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── Contact ── */
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; max-width: 1100px; margin: 0 auto; }
+    .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 14px; }
+    .contact-info p { color: var(--text-mid); margin-bottom: 36px; }
+    .contact-cards { display: flex; flex-direction: column; gap: 16px; }
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: all 0.3s;
+    }
+    .contact-card:hover { border-color: var(--border-gold); box-shadow: var(--shadow-sm); }
+    .contact-card-icon { width: 46px; height: 46px; background: var(--gold-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .contact-card-text .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 5px; }
+    .contact-card-text p { font-size: 0.93rem; color: var(--text); margin: 0; }
+    .contact-card-text small { color: var(--text-light); font-size: 0.82rem; }
+    .map-placeholder { margin-top: 20px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #e8f0fe; height: 160px; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 0.88rem; }
+
+    /* ── Enroll Form ── */
+    .enroll-form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 40px;
+      box-shadow: var(--shadow-md);
+    }
+    .enroll-form h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 6px; }
+    .enroll-form .form-sub { color: var(--text-light); font-size: 0.88rem; margin-bottom: 30px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 7px; font-weight: 600; color: var(--text-mid); font-size: 0.85rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      font-size: 0.93rem;
+      font-family: 'Sora', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fafafa;
+      color: var(--text);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(240,165,0,0.1);
+      background: white;
+    }
+    .form-group textarea { resize: none; }
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy);
+      border: none;
+      padding: 15px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Sora', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-guarantee { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--text-light); font-size: 0.8rem; justify-content: center; }
+    .form-guarantee span { font-size: 1rem; }
+
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 28px; right: 28px;
+      padding: 16px 24px; border-radius: 12px;
+      font-weight: 600; font-size: 0.95rem; color: white;
+      opacity: 0; transform: translateY(16px);
+      transition: all 0.4s ease; z-index: 9999;
+      max-width: 360px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.success { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    #toast.error   { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+    .spinner {
+      display: inline-block; width: 17px; height: 17px;
+      border: 2.5px solid rgba(0,0,0,0.2); border-top-color: var(--navy);
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Placement Banner ── */
+    .placement-banner {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      padding: 60px 70px;
+      text-align: center;
+    }
+    .placement-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 12px; }
+    .placement-banner p { color: var(--navy); opacity: 0.75; max-width: 520px; margin: 0 auto 30px; }
+    .placement-companies { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .company-pill {
+      background: rgba(12,26,46,0.12);
+      color: var(--navy);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid rgba(12,26,46,0.15);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--navy);
+      padding: 60px 70px 40px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+    .footer-brand .main { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: white; margin-bottom: 14px; }
+    .footer-brand p { color: #64748b; font-size: 0.88rem; line-height: 1.8; max-width: 320px; }
+    .footer-col h4 { color: white; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 20px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: #64748b; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { color: #475569; font-size: 0.83rem; }
+    .footer-bottom .gold { color: var(--gold-light); }
+    .cert-badges { display: flex; gap: 8px; }
+    .cert { background: rgba(240,165,0,0.1); color: var(--gold-light); padding: 5px 12px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(240,165,0,0.2); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .navbar, .hero, .section, .placement-banner, .footer { padding-left: 36px; padding-right: 36px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card { display: none; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .course-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .navbar { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero, .section, .placement-banner, .footer { padding-left: 20px; padding-right: 20px; }
+      .hero h1 { font-size: 2.2rem; }
+      .stats-strip { grid-template-columns: repeat(2,1fr); }
+      .course-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .enroll-form { padding: 30px 22px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast"></div>
+
+  <!-- Announcement Bar -->
+  <div class="ann-bar">🎉 <strong>New Batch Starting 15th May 2026</strong> — Limited Seats Available. Call 9955889177 to Reserve Your Spot.</div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="brand-logo">B</div>
+      <div class="brand-text">
+        <div class="main">BDDN</div>
+        <div class="sub">Bihar Digital Data & Network</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="#enroll" class="nav-cta">Enroll Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">🎓 Bihar Digital Data & Network</div>
+        <h1>Launch Your Career in <em>Data Analytics & Digital Marketing</em></h1>
+        <p class="hero-desc">Industry-led training in Data Analytics with Python & Digital Marketing. Real projects, certified trainers, and 95% placement assistance — all in one institute.</p>
+        <div class="hero-actions">
+          <a href="#enroll" class="btn-primary">Enroll Today →</a>
+          <a href="#courses" class="btn-ghost">View Courses</a>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-trust">
+          <div class="trust-dots">
+            <div class="trust-dot">R</div>
+            <div class="trust-dot">A</div>
+            <div class="trust-dot">S</div>
+            <div class="trust-dot">M</div>
+            <div class="trust-dot">+</div>
+          </div>
+          <div class="trust-text">Trusted by <strong>5,000+ students</strong> across Bihar</div>
+        </div>
+      </div>
+      <!-- <div class="hero-card">
+        <div class="hero-card-title">Institute at a Glance</div>
+        <div class="hero-card-stat">
+          <div class="hcs-icon">🎓</div>
+          <div class="hcs-text"><div class="num">5,000+</div><div class="lbl">Students Trained Since 2015</div></div>
+        </div>
+        <div class="hero-card-stat">
+          <div class="hcs-icon">📈</div>
+          <div class="hcs-text"><div class="num">95%</div><div class="lbl">Placement Assistance Rate</div></div>
+        </div>
+        <div class="hero-card-stat">
+          <div class="hcs-icon">🏆</div>
+          <div class="hcs-text"><div class="num">2</div><div class="lbl">Industry-Focused Courses</div></div>
+        </div>
+        <div class="hero-card-stat">
+          <div class="hcs-icon">📜</div>
+          <div class="hcs-text"><div class="num">ISO</div><div class="lbl">Certified Training Programs</div></div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <!-- <div class="section" style="padding-top: 60px; padding-bottom: 0;">
+    <div class="stats-strip">
+      <div class="stat"><div class="stat-num">5000+</div><div class="stat-label">Students Trained</div></div>
+      <div class="stat"><div class="stat-num">95%</div><div class="stat-label">Placement Rate</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years of Experience</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Expert Courses</div></div>
+    </div>
+  </div> -->
+
+  <!-- Courses -->
+  <section class="section" id="courses">
+    <div class="section-header">
+      <div class="label">What We Offer</div>
+      <div class="section-title">Our Professional Courses</div>
+      <p class="section-sub-text">Industry-designed programs with hands-on projects, live classes, and placement support built in.</p>
+    </div>
+    <div class="course-grid">
+
+      <!-- Data Analytics + Python -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-icon">📊🐍</span>
+          <div class="course-duration">⏱ 6 Months · Weekday & Weekend Batches</div>
+          <h3>Data Analytics with Python</h3>
+          <p>The most complete data course in Darbhanga. Master Excel, SQL, Power BI, Tableau — then go further with Python to automate analysis and unlock advanced data work.</p>
+          <div class="course-tags">
+            <span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Python</span><span class="tag">Pandas</span>
+          </div>
+        </div>
+        <div class="course-body" style="padding: 24px 32px;">
+          <p style="font-size:0.88rem; color:var(--text-light); margin-bottom:14px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Curriculum Highlights</p>
+          <div class="curriculum">
+            <div class="curr-item open">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 1</div>Excel & Data Fundamentals</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>Advanced Excel formulas, pivot tables & charts</li>
+                  <li>Data cleaning & validation techniques</li>
+                  <li>Introduction to statistical thinking</li>
+                </ul>
+              </div>
+            </div>
+            <div class="curr-item">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 2</div>SQL & Database Management</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>SQL queries, JOINs, and subqueries</li>
+                  <li>Relational databases with MySQL</li>
+                  <li>Data extraction for reporting</li>
+                </ul>
+              </div>
+            </div>
+            <div class="curr-item">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 3–4</div>Power BI & Tableau Dashboards</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>Building interactive dashboards</li>
+                  <li>DAX functions and data modeling</li>
+                  <li>Tableau visualizations & storytelling</li>
+                  <li>Live project: Sales & HR Analytics Dashboard</li>
+                </ul>
+              </div>
+            </div>
+            <div class="curr-item">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 5</div>Python for Data Analytics</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>Python basics: variables, loops, functions</li>
+                  <li>Pandas & NumPy for data manipulation</li>
+                  <li>Matplotlib & Seaborn for visualizations</li>
+                  <li>Automating Excel reports with Python</li>
+                </ul>
+              </div>
+            </div>
+            <div class="curr-item">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 6</div>Capstone & Placement Prep</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>End-to-end data analysis project</li>
+                  <li>Building your analytics portfolio</li>
+                  <li>Resume, LinkedIn & mock interviews</li>
+                  <li>Job application strategy & referrals</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="course-footer">
+          <div class="course-fee">Fee: <strong>₹20,000</strong></div>
+          <a href="#enroll" class="course-link">Enroll Now →</a>
+        </div>
+      </div>
+
+      <!-- Digital Marketing -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-icon">📣</span>
+          <div class="course-duration">⏱ 3 Months · Morning & Evening Batches</div>
+          <h3>Digital Marketing</h3>
+          <p>Master every pillar of digital marketing — from getting found on Google to running profitable ad campaigns.</p>
+          <div class="course-tags">
+            <span class="tag">SEO</span><span class="tag">Google Ads</span><span class="tag">Social Media</span><span class="tag">Email Marketing</span><span class="tag">Analytics</span>
+          </div>
+        </div>
+        <div class="course-body" style="padding: 24px 32px;">
+          <p style="font-size:0.88rem; color:var(--text-light); margin-bottom:14px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Curriculum Highlights</p>
+          <div class="curriculum">
+            <div class="curr-item open">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 1</div>SEO & Content Marketing</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>On-page and off-page SEO techniques</li>
+                  <li>Keyword research with Google & SEMrush</li>
+                  <li>Content strategy and blogging</li>
+                </ul>
+              </div>
+            </div>
+            <div class="curr-item">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 2</div>Google Ads & PPC</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>Search, Display & Shopping campaigns</li>
+                  <li>Ad copywriting and A/B testing</li>
+                  <li>ROI optimization and budgeting</li>
+                </ul>
+              </div>
+            </div>
+            <div class="curr-item">
+              <div class="curr-header" onclick="toggleCurr(this)">
+                <div><div class="week">Module 3</div>Social Media & Email</div>
+                <span class="curr-arrow">▼</span>
+              </div>
+              <div class="curr-body">
+                <ul>
+                  <li>Meta Ads (Facebook & Instagram)</li>
+                  <li>Email campaigns with Mailchimp</li>
+                  <li>Analytics with Google Analytics 4</li>
+                  <li>Live project: Brand launch campaign</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="course-footer">
+          <div class="course-fee">Fee: <strong>₹15,000</strong></div>
+          <a href="#enroll" class="course-link">Enroll Now →</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section section-dark" id="why">
+    <div class="section-header">
+      <div class="label">Our Difference</div>
+      <div class="section-title light">Why Students Choose BDDN</div>
+      <p class="section-sub-text light">We don't just teach — we prepare you for the job market with everything you need to succeed.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h4>100% Practical Training</h4>
+        <p>Every concept is taught through real-world projects. You'll build a portfolio you can actually show employers, not just theory certificates.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">👔</div>
+        <h4>Dedicated Placement Cell</h4>
+        <p>Our in-house placement team actively connects students with top companies, prepares you for interviews, and reviews your resume — free of cost.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🧑‍🏫</div>
+        <h4>Expert Industry Trainers</h4>
+        <p>Learn from professionals currently working in Data & Digital roles at leading companies. Real experience, not just textbook knowledge.</p>
+      </div>
+      <!-- <div class="why-card">
+        <div class="why-icon">📱</div>
+        <h4>Lifetime LMS Access</h4>
+        <p>All recorded lectures, notes, and resources are available forever in your personal dashboard — revise anytime, from anywhere.</p>
+      </div> -->
+      <div class="why-card">
+        <div class="why-icon">🏅</div>
+        <h4>Industry-Recognized Certificate</h4>
+        <p>Receive a BDDN completion certificate that's recognized by hiring partners. LinkedIn-ready and verifiable by employers.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h4>Small Batch Sizes</h4>
+        <p>We keep batches to a maximum of 20 students so every learner gets personal attention, doubt-clearing, and mentorship from day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-alt" id="about">
+    <div class="section-header">
+      <div class="label">Who We Are</div>
+      <div class="section-title">About BDDN</div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Bridging Bihar's Digital Skills Gap Since 2015</h2>
+        <p>Bihar Digital Data & Network (BDDN) was founded with a single mission: to make world-class digital education accessible to students in Bihar — at an affordable price, without compromising quality.</p>
+        <!-- <p>Located at the heart of Darbhanga, we have trained over 5,000 students from across the Mithila region and beyond. Our graduates work at companies across India, from Patna startups to Delhi-NCR corporates and remote-first tech firms.</p> -->
+        <p>We believe that geography should never be a barrier to a career in tech. Whether you're a fresh 12th-pass student, a graduate looking to upskill, or a working professional seeking a career change — BDDN has a program designed for you.</p>
+        <div class="feature-grid">
+          <div class="feat">
+            <div class="feat-icon">✅</div>
+            <div class="feat-text"><div class="title">ISO-Certified Programs</div><div class="desc">Nationally recognized curriculum</div></div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🏫</div>
+            <div class="feat-text"><div class="title">AC-Equipped Classrooms</div><div class="desc">Comfortable learning environment</div></div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">💻</div>
+            <div class="feat-text"><div class="title">Personal Computer Lab</div><div class="desc">High-speed internet included</div></div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🧪</div>
+            <div class="feat-text"><div class="title">Live Industry Projects</div><div class="desc">Real case studies and datasets</div></div>
+          </div>
+          <div class="feat">
+            <!-- <div class="feat-icon">📆</div>
+            <div class="feat-text"><div class="title">Flexible Batch Timings</div><div class="desc">Morning, evening & weekend batches</div></div> -->
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🆓</div>
+            <div class="feat-text"><div class="title">Free Demo Class</div><div class="desc">Try before you enroll</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="director-card">
+          <div class="director-card-top">
+            <div class="director-avatar">👨‍💼</div>
+            <h3>S M Nadeem</h3>
+            <div class="role">Director & Founder · BDDN</div>
+          </div>
+          <div class="director-card-body">
+            <p class="director-quote">"My vision was simple — no student in Bihar should miss out on a digital career because of where they live. Every batch we train is a step towards a more skilled, more empowered Bihar."</p>
+            <div class="director-stats">
+              <!-- <div class="dir-stat"><div class="num">10+</div><div class="lbl">Years Teaching</div></div>
+              <div class="dir-stat"><div class="num">5K+</div><div class="lbl">Lives Impacted</div></div>
+              <div class="dir-stat"><div class="num">3</div><div class="lbl">Courses Designed</div></div>
+              <div class="dir-stat"><div class="num">95%</div><div class="lbl">Placement Rate</div></div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placement Banner -->
+  <!-- <div class="placement-banner">
+    <h2>Our Graduates Work At Top Companies</h2>
+    <p>BDDN has placed students in leading organizations across India. Your next employer could be on this list.</p>
+    <div class="placement-companies">
+      <div class="company-pill">Infosys</div>
+      <div class="company-pill">Wipro</div>
+      <div class="company-pill">TCS</div>
+      <div class="company-pill">HCLTech</div>
+      <div class="company-pill">Accenture</div>
+      <div class="company-pill">Cognizant</div>
+      <div class="company-pill">Startups & Agencies</div>
+      <div class="company-pill">Freelancing</div>
+    </div>
+    <a href="#enroll" class="btn-primary" style="display:inline-flex;">Start Your Journey →</a>
+  </div> -->
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials">
+    <div class="section-header">
+      <div class="label">Student Success Stories</div>
+      <div class="section-title">What Our Students Say</div>
+      <p class="section-sub-text">Real reviews from real students who transformed their careers with BDDN.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I joined BDDN after failing to crack interviews for 2 years. The Data Analytics course completely changed my approach. Within 6 weeks of completing the course, I got placed at an IT firm in Noida. The trainers are genuinely invested in your growth."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RK</div>
+          <div>
+            <div class="testi-name">Rahul Kumar</div>
+            <div class="testi-meta">Data Analyst, Noida</div>
+            <div class="testi-badge">Data Analytics Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The Digital Marketing course at BDDN is incredibly practical. We ran actual Google Ads campaigns with real budgets during training. I now manage digital marketing for a Patna-based e-commerce company. Best investment I ever made."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">PD</div>
+          <div>
+            <div class="testi-name">Priya Devi</div>
+            <div class="testi-meta">Digital Marketing Executive, Patna</div>
+            <div class="testi-badge">Digital Marketing Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The Python module inside the Data Analytics course was a game-changer for me. I could automate my entire Excel reporting workflow within weeks. S M Nadeem sir explains everything in simple Hinglish so nothing feels out of reach. Placed as a Data Analyst in Delhi."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MA</div>
+          <div>
+            <div class="testi-name">Mohammad Aamir</div>
+            <div class="testi-meta">Data Analyst, Delhi</div>
+            <div class="testi-badge">Data Analytics with Python Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★☆</div>
+        <p class="testi-text">"I was a commerce graduate with no technical background. The team at BDDN made sure no one gets left behind. The small batch size really helped — I could ask any question without hesitation. Got my certification and freelancing clients within 3 months."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SK</div>
+          <div>
+            <div class="testi-name">Sunita Kumari</div>
+            <div class="testi-meta">Freelance SEO Specialist</div>
+            <div class="testi-badge">Digital Marketing Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"What I love about BDDN is that they teach you like a professional, not like a student. The Power BI project we built during training was the main talking point in all my interviews. Currently working as a BI Analyst with a 6-figure CTC."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">VS</div>
+          <div>
+            <div class="testi-name">Vikash Singh</div>
+            <div class="testi-meta">BI Analyst, Bangalore</div>
+            <div class="testi-badge">Data Analytics Graduate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Being from a small town near Darbhanga, I had no idea such quality education existed so close to home. The LMS access means I keep going back to revise even after getting placed. BDDN is genuinely world-class at very affordable fees."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Ankit Kumar Jha</div>
+            <div class="testi-meta">Data Analyst, Gurugram</div>
+            <div class="testi-badge">Data Analytics with Python Graduate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt" id="faq">
+    <div class="section-header">
+      <div class="label">Got Questions?</div>
+      <div class="section-title">Frequently Asked Questions</div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What qualifications do I need to join BDDN?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">No prior technical background is required for any of our courses. Whether you've just passed 12th grade, completed a BA/B.Com/B.Sc, or are a working professional looking to upskill — you are welcome. We start from the very basics in every program.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Are classes taught in Hindi or English?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Classes are conducted in Hinglish (Hindi + English mix) to ensure maximum comfort and understanding. All reading materials and software interfaces are in English, which also helps students prepare for the professional environment.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is placement assistance guaranteed?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">We offer placement assistance to all eligible graduates — this includes resume building, mock interview preparation, LinkedIn profile optimization, and direct referrals to our hiring partners. While we cannot guarantee a specific salary or company, our 95% placement track record speaks for itself. Students who complete all projects and attend placement sessions consistently get placed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can I attend a free demo class before enrolling?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Absolutely! We encourage all prospective students to attend a free demo session before making any payment. This helps you understand our teaching style, meet the trainer, and make an informed decision. Call us at 9955889177 to schedule your free demo.</div>
+      </div>
+      <!-- <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Are there EMI or instalment payment options?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Yes! We understand that finances can be a challenge. We offer flexible instalment plans for all our courses. You can pay in 2–3 instalments. Please speak to our admissions team for details specific to your chosen course.</div>
+      </div> -->
+      <!-- <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What happens if I miss a class?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">All classes are recorded and uploaded to the Learning Management System (LMS) within 24 hours. You can watch missed sessions at your convenience. Additionally, we schedule regular doubt-clearing sessions every week so you never fall behind.</div>
+      </div> -->
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What certificate will I receive?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Upon successful completion of the course (attendance + project submission), you will receive an official BDDN Course Completion Certificate. This certificate includes a QR code for online verification by employers. We also help you add your projects and certification to LinkedIn for maximum visibility.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact + Enroll -->
+  <section class="section" id="contact">
+    <div class="section-header">
+      <div class="label">Reach Out</div>
+      <div class="section-title">Get In Touch & Enroll</div>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>We're Here to Help</h3>
+        <p>Have questions about courses, fees, batch timings, or placement? Our admissions team is available Mon–Sat, 9 AM to 8 PM. Drop by in person or call us right now.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="contact-card-icon">📍</div>
+            <div class="contact-card-text">
+              <div class="label">Visit Us</div>
+              <p>Khan Chowk, Near Vision International School</p>
+              <small>Darbhanga, Bihar – 846004</small>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">📞</div>
+            <div class="contact-card-text">
+              <div class="label">Call / WhatsApp</div>
+              <p>+91 9955889177</p>
+              <small>Mon–Sat: 9:00 AM – 8:00 PM</small>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">🕐</div>
+            <div class="contact-card-text">
+              <div class="label">Batch Timings</div>
+              <p>Morning: 8–10 AM &nbsp;|&nbsp; Evening: 5–7 PM</p>
+              <small>Weekend batches available on request</small>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">👨‍💼</div>
+            <div class="contact-card-text">
+              <div class="label">Director</div>
+              <p>S M Nadeem — Founder & Director</p>
+              <small>Available for personal consultations</small>
+            </div>
+          </div>
+        </div>
+        <div class="map-placeholder">📍 Khan Chowk, Darbhanga · Near Vision International School</div>
+      </div>
+
+      <!-- Enroll Form -->
+      <div class="enroll-form" id="enroll">
+        <h3>Enroll Today</h3>
+        <p class="form-sub">Fill in your details and our team will call you within 24 hours.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="name" placeholder="Your full name" autocomplete="name"/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="phone" placeholder="+91 XXXXXXXXXX" autocomplete="tel"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="yourname@email.com" autocomplete="email"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Select Course *</label>
+            <select id="course">
+              <option value="">-- Choose a Course --</option>
+              <option>Data Analytics with Python</option>
+              <option>Digital Marketing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <!-- <label>Preferred Batch</label>
+            <select id="batch">
+              <option value="">-- Batch Timing --</option>
+              <option>Morning (8–10 AM)</option>
+              <option>Evening (5–7 PM)</option>
+              <option>Weekend</option>
+            </select> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message / Questions (Optional)</label>
+          <textarea id="message" rows="3" placeholder="Any questions about the course, fees, or timings?"></textarea>
+        </div>
+        <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+          Submit Enrollment Request
+        </button>
+        <div class="form-guarantee">
+          <span>🔒</span> Your information is safe with us. No spam, no sharing.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="main">BDDN</div>
+        <p>Bihar Digital Data & Network is Darbhanga's leading digital skills training institute. We've been empowering students with industry-ready skills since 2015.</p>
+        <!-- <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="cert">ISO Certified</span>
+          <span class="cert">NSDC Partner</span>
+          <span class="cert">Est. 2015</span>
+        </div> -->
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Our Courses</a></li>
+          <li><a href="#about">About BDDN</a></li>
+          <li><a href="#testimonials">Student Reviews</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">📍 Khan Chowk, Darbhanga</a></li>
+          <li><a href="#">📞 9955889177</a></li>
+          <li><a href="#">🕐 Mon–Sat: 9 AM–8 PM</a></li>
+          <li><a href="#">👨‍💼 Director: S M Nadeem</a></li>
+          <li><a href="#enroll">🎓 Free Demo Class</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span class="gold">Bihar Digital Data & Network (BDDN)</span>. All Rights Reserved.</p>
+      <div class="cert-badges">
+        <span class="cert">Data Analytics with Python</span>
+        <span class="cert">Digital Marketing</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toast
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `show ${type}`;
+      setTimeout(() => { t.className = ''; }, 4800);
+    }
+
+    // Accordion: curriculum
+    function toggleCurr(header) {
+      const item = header.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // Accordion: FAQ
+    function toggleFaq(header) {
+      const item = header.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // Form submit
+    async function submitForm() {
+      const name    = document.getElementById('name').value.trim();
+      const phone   = document.getElementById('phone').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const course  = document.getElementById('course').value;
+      const batch   = document.getElementById('batch').value;
+      const message = document.getElementById('message').value.trim();
+      const btn     = document.getElementById('submitBtn');
+
+      if (!name || !phone || !course) {
+        showToast('⚠️ Please fill in Name, Phone and Course.', 'error');
+        return;
+      }
+      if (phone.replace(/\D/g,'').length < 10) {
+        showToast('⚠️ Please enter a valid 10-digit phone number.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+      try {
+        const res = await fetch('/api/enroll', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, email, course, batch, message }),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(`✅ Thank you, ${name}! Our team will call you within 24 hours.`, 'success');
+          ['name','phone','email','course','batch','message'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+          });
+        } else {
+          showToast(`❌ ${data.error || 'Something went wrong. Please try again.'}`, 'error');
+        }
+      } catch (err) {
+        showToast('❌ Network error. Please check your connection.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'Submit Enrollment Request';
+      }
+    }
+  </script>
+
+</body>
+</html>
