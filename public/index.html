@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BDDN – BIHAR DIGITAL DATA & NETWORK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffc83c;
+      --primary-dark: #ff9f00;
+      --text: #1e2937;
+      --text-light: #475569;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--primary-dark); }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 500; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.06em; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--primary-dark); }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e0f2fe 100%);
+      padding: 120px 60px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge { display: inline-block; background: rgba(255,200,60,0.15); color: #d97706; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem,6vw,4.5rem); font-weight: 900; line-height: 1.1; color: #0f172a; margin-bottom: 20px; }
+    .hero h1 span { color: var(--primary-dark); }
+    .hero p { font-size: 1.2rem; color: var(--text-light); max-width: 620px; margin: 0 auto 40px; }
+    .hero-btn { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #0a0f1e; font-weight: 700; padding: 16px 44px; border-radius: 8px; text-decoration: none; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(255,200,60,0.4); transition: all 0.3s; }
+    .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(255,200,60,0.5); }
+
+    /* Section */
+    .section { padding: 80px 60px; }
+    .section-alt { background: #f1f5f9; }
+    .section-sub { text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; color: #64748b; font-size: 0.95rem; margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: #0f172a; margin-bottom: 50px; text-align: center; }
+
+    /* Courses */
+    .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 28px; }
+    .course-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 40px 30px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .course-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary); }
+    .course-icon { font-size: 3rem; margin-bottom: 20px; }
+    .course-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 12px; color: #0f172a; }
+    .course-card p { color: var(--text-light); margin-bottom: 20px; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+    .tag { background: rgba(255,200,60,0.1); color: #d97706; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+    
+    .course-modules { list-style: none; margin-bottom: 20px; }
+    .course-modules li { font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .course-modules li::before { content: "✔"; color: #22c55e; font-weight: bold; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text p { color: var(--text-light); margin-bottom: 20px; font-size: 1.02rem; }
+    .feature-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .feature-list li { display: flex; align-items: center; gap: 10px; color: #334155; }
+    .feature-list li::before { content: "✦"; color: var(--primary-dark); }
+    .director-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 50px 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .director-avatar { width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 20px; color: white; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 24px; }
+    .contact-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 36px 28px; text-align: center; transition: all 0.3s; }
+    .contact-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .contact-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .contact-card h4 { color: #d97706; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 12px; }
+
+    /* Enroll Form */
+    .enroll-box { background: white; border: 2px solid rgba(255,200,60,0.3); border-radius: 20px; padding: 60px 50px; max-width: 620px; margin: 0 auto; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+    .enroll-box label { display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 0.9rem; }
+    .enroll-box input, .enroll-box select, .enroll-box textarea { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+    .enroll-box input:focus, .enroll-box select:focus, .enroll-box textarea:focus { outline: none; border-color: var(--primary-dark); }
+    .enroll-box button { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #0a0f1e; border: none; padding: 16px; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
+    .enroll-box button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,200,60,0.4); }
+    .enroll-box button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Toast notification */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 18px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      z-index: 9999;
+      max-width: 380px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.success { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    #toast.error   { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(0,0,0,0.2);
+      border-top-color: #0a0f1e;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Footer */
+    .footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 40px 20px; font-size: 0.95rem; }
+    .footer span { color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .navbar, .hero, .section { padding-left: 24px; padding-right: 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .enroll-box { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast"></div>
+
+  <nav class="navbar">
+    <div class="nav-brand">BDDN</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-badge">🎓 BIHAR DIGITAL DATA & NETWORK</div>
+    <h1>Master <span>Data Analytics & Digital Marketing</span></h1>
+    <p>Comprehensive industry-led training in high-demand digital skills with placement assistance and live projects.</p>
+    <a href="#enroll" class="hero-btn">Enroll Now →</a>
+  </section>
+
+  <!-- Courses -->
+  <section class="section" id="courses">
+    <div class="section-sub">Expert Training</div>
+    <div class="section-title">Our Professional Programs</div>
+    <div class="course-grid">
+      
+      <!-- Data Analytics (Python Merged) -->
+      <div class="course-card">
+        <div class="course-icon">📊</div>
+        <h3>Data Analytics & Python</h3>
+        <p>A complete path from data processing to visualization and predictive modeling.</p>
+        <ul class="course-modules">
+          <li>Advanced Excel & Dashboarding</li>
+          <li>SQL for Data Science & Databases</li>
+          <li>Python Programming (NumPy, Pandas, Matplotlib)</li>
+          <li>Power BI & Tableau Visualization</li>
+          <li>Statistical Analysis & Machine Learning Basics</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Excel</span>
+        </div>
+      </div>
+
+      <!-- Digital Marketing -->
+      <div class="course-card">
+        <div class="course-icon">📣</div>
+        <h3>Digital Marketing Specialist</h3>
+        <p>Strategic training to master the digital landscape and drive business growth.</p>
+        <ul class="course-modules">
+          <li>Search Engine Optimization (SEO)</li>
+          <li>Google Ads (SEM) & PPC Campaigns</li>
+          <li>Social Media Marketing (SMM) & Meta Ads</li>
+          <li>Content Strategy & Email Marketing</li>
+          <li>Google Analytics (GA4) & Reporting</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">SEO</span><span class="tag">Google Ads</span><span class="tag">SMM</span><span class="tag">Meta Ads</span><span class="tag">GA4</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-alt" id="about">
+    <div class="section-sub">Who We Are</div>
+    <div class="section-title">About BDDN</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>BIHAR DIGITAL DATA & NETWORK (BDDN) is committed to bridging the digital skills gap in Bihar. We provide industry-relevant training that guarantees placement assistance and real career outcomes.</p>
+        <p>Our courses are designed by industry experts and include hands-on projects, live sessions, and certification preparation.</p>
+        <ul class="feature-list">
+          <li>100% Practical Training</li>
+          <li>Lifetime Access to Materials</li>
+          <li>Placement Assistance</li>
+          <li>Certified Trainers</li>
+          <li>Live Sessions</li>
+          <li>Industry Projects</li>
+        </ul>
+      </div>
+      <div class="director-card">
+        <div class="director-avatar">👨‍💼</div>
+        <h3>S M Nadeem</h3>
+        <p style="color:#64748b;font-weight:500;">Director & Founder</p>
+        <p style="margin-top:20px;color:#475569;">Under his expert guidance, BDDN has empowered thousands of students across Bihar with industry-ready digital skills.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="section-sub">Reach Out</div>
+    <div class="section-title">Get In Touch</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h4>Visit Us</h4>
+        <p>Khan Chowk, Near Vision International School</p>
+        <p>Darbhanga, Bihar – 846004</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h4>Call Us</h4>
+        <p>9955889177</p>
+        <p>Mon–Sat: 9 AM – 8 PM</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">👨‍💼</div>
+        <h4>Director</h4>
+        <p>S M Nadeem</p>
+        <p>Director & Founder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enroll Section -->
+  <section class="section section-alt" id="enroll">
+    <div class="section-sub" style="text-align:center;">Start Your Journey</div>
+    <div class="section-title">Enroll Today</div>
+
+    <div class="enroll-box">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" autocomplete="name"/>
+
+      <label>Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" autocomplete="tel"/>
+
+      <label>Select Course</label>
+      <select id="course">
+        <option value="">-- Choose a Course --</option>
+        <option>Data Analytics & Python</option>
+        <option>Digital Marketing Specialist</option>
+      </select>
+
+      <label>Message (optional)</label>
+      <textarea id="message" rows="4" placeholder="Any questions or queries?"></textarea>
+
+      <button id="submitBtn" onclick="submitForm()">Submit Enrollment Request</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 <span>BIHAR DIGITAL DATA & NETWORK (BDDN)</span>. All Rights Reserved.<br>
+    Empowering Bihar with Digital Skills
+  </footer>
+
+  <script>
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `show ${type}`;
+      setTimeout(() => { t.className = ''; }, 4500);
+    }
+
+    async function submitForm() {
+      const name    = document.getElementById('name').value.trim();
+      const phone   = document.getElementById('phone').value.trim();
+      const course  = document.getElementById('course').value;
+      const message = document.getElementById('message').value.trim();
+      const btn     = document.getElementById('submitBtn');
+
+      if (!name || !phone || !course) {
+        showToast('⚠️ Please fill in Name, Phone and Course.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+      try {
+        const res = await fetch('/api/enroll', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, course, message }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showToast(`✅ Thank you, ${name}! We'll call you shortly.`, 'success');
+          document.getElementById('name').value    = '';
+          document.getElementById('phone').value   = '';
+          document.getElementById('course').value  = '';
+          document.getElementById('message').value = '';
+        } else {
+          showToast(`❌ ${data.error || 'Something went wrong. Please try again.'}`, 'error');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('❌ Network error. Please check your connection.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'Submit Enrollment Request';
+      }
+    }
+  </script>
+
+</body>
+</html>
