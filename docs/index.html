@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BDDN – Bihar Digital Data & Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM Sans:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #f5a623;
+      --gold-light: #ffd47a;
+      --gold-dark: #d4820a;
+      --ink: #0d1117;
+      --ink-soft: #1c2533;
+      --slate: #3d4f66;
+      --muted: #8898aa;
+      --paper: #fafaf8;
+      --white: #ffffff;
+      --border: rgba(245,166,35,0.18);
+      --card-shadow: 0 2px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      flex-shrink: 0;
+    }
+    .nav-brand-text {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .nav-brand-text small {
+      display: block;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--slate);
+      font-weight: 500;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { background: rgba(245,166,35,0.1); color: var(--gold-dark); }
+    .nav-cta {
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      border-radius: 8px !important;
+    }
+    .nav-cta:hover { background: var(--gold-dark) !important; color: var(--ink) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245,166,35,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      bottom: -10%;
+      right: -5%;
+      width: 600px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,166,35,0.12);
+      border: 1px solid rgba(245,166,35,0.3);
+      color: var(--gold-light);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-left h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-left h1 .highlight {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-left p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.98rem;
+      padding: 15px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(245,166,35,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(245,166,35,0.45); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--gold-light); }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 52px;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .hero-stat-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-num span { color: var(--gold); }
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* Hero Right Card */
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 36px;
+      backdrop-filter: blur(10px);
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .hero-card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+    .hero-course-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-course-item:last-child { border-bottom: none; }
+    .hero-course-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .icon-data { background: rgba(245,166,35,0.15); }
+    .icon-dm { background: rgba(94,211,243,0.1); }
+    .hero-course-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .hero-course-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+    }
+    .hero-card-footer {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(245,166,35,0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .hero-card-footer-icon { font-size: 1.4rem; }
+    .hero-card-footer-text {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .hero-card-footer-text strong { color: var(--gold-light); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── MARQUEE STRIP ─── */
+    .marquee-strip {
+      background: var(--gold);
+      padding: 13px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .marquee-sep { color: rgba(0,0,0,0.35); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTION BASE ─── */
+    .section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-full { max-width: none; background: #f3f4f6; }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-dark);
+      margin-bottom: 14px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--slate);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin-bottom: 60px;
+    }
+
+    /* ─── COURSES ─── */
+    .courses-wrapper { background: var(--paper); }
+    .courses-header { text-align: center; }
+    .courses-header .section-sub { margin: 0 auto 60px; }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .course-card {
+      background: var(--white);
+      border: 1px solid #e8ecf0;
+      border-radius: 20px;
+      padding: 44px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: var(--card-shadow);
+    }
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .course-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); border-color: rgba(245,166,35,0.3); }
+    .course-card:hover::before { transform: scaleX(1); }
+
+    .course-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(245,166,35,0.12), rgba(245,166,35,0.06));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      border: 1px solid rgba(245,166,35,0.2);
+    }
+    .course-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .course-card > p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .course-modules {
+      list-style: none;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .course-modules li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--slate);
+    }
+    .module-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: #16a34a;
+    }
+    .course-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      background: rgba(245,166,35,0.08);
+      color: var(--gold-dark);
+      border: 1px solid rgba(245,166,35,0.2);
+      padding: 5px 13px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* ─── FEATURES STRIP ─── */
+    .features-strip {
+      background: var(--ink);
+      padding: 80px 60px;
+    }
+    .features-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .feature-item {
+      padding: 44px 40px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: rgba(245,166,35,0.15);
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -0.04em;
+    }
+    .feature-item h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .feature-item p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-wrapper { background: var(--paper); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-left p {
+      color: var(--slate);
+      margin-bottom: 22px;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+    .about-perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border: 1px solid #e8ecf0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: all 0.2s;
+    }
+    .perk-item:hover { border-color: var(--gold); background: rgba(245,166,35,0.03); }
+    .perk-check { color: var(--gold-dark); font-size: 0.9rem; }
+
+    .director-card {
+      background: var(--white);
+      border: 1px solid #e8ecf0;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .director-top {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+      padding: 48px 40px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .director-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(245,166,35,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .director-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      margin: 0 auto 18px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 24px rgba(245,166,35,0.4);
+    }
+    .director-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+    .director-title {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .director-body {
+      padding: 32px 36px;
+    }
+    .director-body p {
+      color: var(--slate);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      text-align: center;
+    }
+    .director-quote {
+      background: rgba(245,166,35,0.06);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--slate);
+      font-style: italic;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-wrapper { background: var(--paper); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .contact-card {
+      background: var(--white);
+      border: 1px solid #e8ecf0;
+      border-radius: 18px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .contact-card:hover::after { transform: scaleX(1); }
+    .contact-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(245,166,35,0.08);
+      border: 1px solid rgba(245,166,35,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+    .contact-card h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-dark);
+      margin-bottom: 14px;
+    }
+    .contact-card p {
+      color: var(--slate);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    /* ─── ENROLL ─── */
+    .enroll-wrapper {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .enroll-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -10%;
+      width: 60%;
+      height: 120%;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .enroll-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 60px;
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 80px;
+      align-items: start;
+    }
+    .enroll-left .section-title { color: var(--white); }
+    .enroll-left .section-sub { color: rgba(255,255,255,0.5); }
+    .enroll-perks {
+      list-style: none;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .enroll-perks li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+    }
+    .enroll-perk-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(245,166,35,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .enroll-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 44px 40px;
+      backdrop-filter: blur(10px);
+    }
+    .enroll-box-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .enroll-box label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .enroll-box input,
+    .enroll-box select,
+    .enroll-box textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 0.97rem;
+      font-family: 'Instrument Sans', sans-serif;
+      color: var(--white);
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .enroll-box input::placeholder, .enroll-box textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .enroll-box select option { background: #1c2533; }
+    .enroll-box input:focus,
+    .enroll-box select:focus,
+    .enroll-box textarea:focus {
+      border-color: rgba(245,166,35,0.5);
+      background: rgba(245,166,35,0.04);
+    }
+    .enroll-box button {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--ink);
+      border: none;
+      padding: 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .enroll-box button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245,166,35,0.4);
+    }
+    .enroll-box button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ─── TOAST ─── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: white;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.4s ease;
+      z-index: 9999;
+      max-width: 360px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.success { background: linear-gradient(135deg, #22c55e, #15803d); }
+    #toast.error   { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(0,0,0,0.2);
+      border-top-color: var(--ink);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #090d13;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 50px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .footer-brand small {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Instrument Sans', sans-serif;
+    }
+    .footer-copy {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+    .footer-copy span { color: var(--gold); opacity: 0.8; }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .navbar { padding: 0 24px; }
+      .hero-content { grid-template-columns: 1fr; gap: 48px; padding: 40px 24px; }
+      .hero-card { display: none; }
+      .course-grid { grid-template-columns: 1fr; }
+      .features-inner { grid-template-columns: 1fr; }
+      .feature-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .enroll-inner { grid-template-columns: 1fr; gap: 40px; }
+      .section { padding: 70px 24px; }
+      .features-strip { padding: 70px 24px; }
+      .enroll-inner { padding: 70px 24px; }
+      .footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#home" class="nav-brand">
+    <div class="nav-logo-mark">BD</div>
+    <div class="nav-brand-text">
+      BDDN
+      <small>Bihar Digital Data &amp; Network</small>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#enroll" class="nav-cta">Enroll Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Bihar Digital Data &amp; Network
+      </div>
+      <h1>Build Your Career in <span class="highlight">Data & Digital Marketing</span></h1>
+      <p>Industry-led training with live projects, placement assistance, and certifications designed for Bihar's next generation of digital professionals.</p>
+      <div class="hero-actions">
+        <a href="#enroll" class="btn-primary">Start Enrolling →</a>
+        <a href="#courses" class="btn-ghost">View Programs ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">2<span>+</span></div>
+          <div class="hero-stat-label">Programs</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100<span>%</span></div>
+          <div class="hero-stat-label">Practical</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">Bihar<span>'s</span></div>
+          <div class="hero-stat-label">Best in Class</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-title">✦ Our Programs</div>
+      <div class="hero-course-item">
+        <div class="hero-course-icon icon-data">📊</div>
+        <div>
+          <div class="hero-course-name">Data Analytics & Python</div>
+          <div class="hero-course-desc">Excel · SQL · Python · Power BI · Tableau</div>
+        </div>
+      </div>
+      <div class="hero-course-item">
+        <div class="hero-course-icon icon-dm">📣</div>
+        <div>
+          <div class="hero-course-name">Digital Marketing Specialist</div>
+          <div class="hero-course-desc">SEO · Google Ads · SMM · Meta Ads · GA4</div>
+        </div>
+      </div>
+      <div class="hero-card-footer">
+        <div class="hero-card-footer-icon">🎯</div>
+        <div class="hero-card-footer-text">
+          <strong>Placement Assistance</strong> included<br>with every program
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <!-- repeated for seamless loop -->
+    <span class="marquee-item">Data Analytics <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Python Programming <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Digital Marketing <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Power BI <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Google Ads <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Placement Assistance <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Live Projects <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Certified Trainers <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Data Analytics <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Python Programming <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Digital Marketing <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Power BI <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Google Ads <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Placement Assistance <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Live Projects <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Certified Trainers <span class="marquee-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- COURSES -->
+<div class="courses-wrapper" id="courses">
+  <div class="section">
+    <div class="courses-header">
+      <div class="section-eyebrow">Expert Training</div>
+      <h2 class="section-title">Our Professional Programs</h2>
+      <p class="section-sub">Industry-designed curricula with hands-on projects and real tools used by companies today.</p>
+    </div>
+    <div class="course-grid">
+
+      <div class="course-card">
+        <div class="course-icon-wrap">📊</div>
+        <h3>Data Analytics & Python</h3>
+        <p>A complete path from data processing to advanced visualization and business analysis.</p>
+        <ul class="course-modules">
+          <li><span class="module-check">✔</span> Advanced Excel & Dashboarding</li>
+          <li><span class="module-check">✔</span> SQL for Data Analysis & Databases</li>
+          <li><span class="module-check">✔</span> Python Programming (NumPy, Pandas, Matplotlib)</li>
+          <li><span class="module-check">✔</span> Power BI & Tableau Visualization</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Excel</span>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon-wrap">📣</div>
+        <h3>Digital Marketing Specialist</h3>
+        <p>Strategic training to master the digital landscape and drive measurable business growth.</p>
+        <ul class="course-modules">
+          <li><span class="module-check">✔</span> Search Engine Optimization (SEO)</li>
+          <li><span class="module-check">✔</span> Google Ads (SEM) & PPC Campaigns</li>
+          <li><span class="module-check">✔</span> Social Media Marketing (SMM) & Meta Ads</li>
+          <li><span class="module-check">✔</span> Content Strategy & Email Marketing</li>
+          <li><span class="module-check">✔</span> Google Analytics (GA4) & Reporting</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">SEO</span><span class="tag">Google Ads</span><span class="tag">SMM</span><span class="tag">Meta Ads</span><span class="tag">GA4</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES STRIP -->
+<div class="features-strip">
+  <div class="features-inner">
+    <div class="feature-item">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-num">100%</div>
+      <h4>Practical Training</h4>
+      <p>Every module includes real-world exercises, live datasets, and industry tools.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🏆</div>
+      <div class="feature-num">∞</div>
+      <h4>Lifetime Access</h4>
+      <p>Study materials, printed notes, and classroom sessions — available anytime at the center, with lifetime access and no expiry.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🚀</div>
+      <div class="feature-num">✓</div>
+      <h4>Placement Assistance</h4>
+      <p>Resume building, mock interviews, and connections to hiring companies across the region.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-wrapper" id="about">
+  <div class="section">
+    <div class="section-eyebrow">Who We Are</div>
+    <div class="about-grid">
+      <div class="about-left">
+        <h2 class="section-title">Empowering Bihar<br>with Digital Skills</h2>
+        <p>BIHAR DIGITAL DATA &amp; NETWORK (BDDN) is committed to bridging the digital skills gap in Bihar. We provide industry-relevant training that guarantees placement assistance and real career outcomes.</p>
+        <p>Our courses are designed by industry experts and include hands-on projects, live sessions, and certification preparation — ensuring every student is job-ready from day one.</p>
+        <div class="about-perks">
+          <div class="perk-item"><span class="perk-check">✦</span> 100% Practical</div>
+          <div class="perk-item"><span class="perk-check">✦</span> Lifetime Access</div>
+          <div class="perk-item"><span class="perk-check">✦</span> Placement Help</div>
+          <div class="perk-item"><span class="perk-check">✦</span> Certified Trainers</div>
+          <div class="perk-item"><span class="perk-check">✦</span> Live Sessions</div>
+          <div class="perk-item"><span class="perk-check">✦</span> Industry Projects</div>
+        </div>
+      </div>
+      <div class="director-card">
+        <div class="director-top">
+          <div class="director-avatar">👨‍💼</div>
+          <div class="director-name">S M Nadeem</div>
+          <div class="director-title">Director &amp; Founder</div>
+        </div>
+        <div class="director-body">
+          <p>Under his expert guidance, BDDN has empowered thousands of students across Bihar with industry-ready digital skills.</p>
+          <div class="director-quote">
+            "Our mission is simple — give every student in Bihar access to world-class digital education."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-wrapper" id="contact" style="background:#f3f4f6;">
+  <div class="section">
+    <div class="section-eyebrow">Reach Out</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-sub">We're happy to answer your questions and help you choose the right program.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon-wrap">📍</div>
+        <h4>Visit Us</h4>
+        <p>Khan Chowk, Near Vision International School<br>Darbhanga, Bihar – 846004</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon-wrap">📞</div>
+        <h4>Call Us</h4>
+        <p>9955889177<br>Mon–Sat: 9 AM – 8 PM</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon-wrap">👨‍💼</div>
+        <h4>Director</h4>
+        <p>S M Nadeem<br>Director &amp; Founder</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ENROLL -->
+<div class="enroll-wrapper" id="enroll">
+  <div class="enroll-inner">
+    <div class="enroll-left">
+      <div class="section-eyebrow" style="color:var(--gold);">Start Your Journey</div>
+      <h2 class="section-title">Enroll<br>Today</h2>
+      <p class="section-sub">Fill in your details and our team will get back to you within 24 hours.</p>
+      <ul class="enroll-perks">
+        <li>
+          <div class="enroll-perk-icon">🎓</div>
+          Industry-recognized certification on completion
+        </li>
+        <li>
+          <div class="enroll-perk-icon">💼</div>
+          Dedicated placement support team
+        </li>
+        <li>
+          <div class="enroll-perk-icon">🖥️</div>
+          <!-- Live sessions + lifetime access to recordings -->
+          Live sessions
+        </li>
+        <li>
+          <div class="enroll-perk-icon">📁</div>
+          Real-world projects in your portfolio
+        </li>
+      </ul>
+    </div>
+
+    <div class="enroll-box">
+      <div class="enroll-box-title">Request Enrollment</div>
+
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" autocomplete="name"/>
+
+      <label>Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" autocomplete="tel"/>
+
+      <label>Select Course</label>
+      <select id="course">
+        <option value="">-- Choose a Course --</option>
+        <option>Data Analytics & Python</option>
+        <option>Digital Marketing Specialist</option>
+      </select>
+
+      <label>Message (optional)</label>
+      <textarea id="message" rows="4" placeholder="Any questions or queries?"></textarea>
+
+      <button id="submitBtn" onclick="submitForm()">Submit Enrollment Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">
+    BDDN
+    <small>Bihar Digital Data &amp; Network</small>
+  </div>
+  <div class="footer-copy">
+    © 2026 <span>Bihar Digital Data &amp; Network</span>. All Rights Reserved.<br>
+    Empowering Bihar with Digital Skills
+  </div>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `show ${type}`;
+    setTimeout(() => { t.className = ''; }, 4500);
+  }
+
+  async function submitForm() {
+    const name    = document.getElementById('name').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const course  = document.getElementById('course').value;
+    const message = document.getElementById('message').value.trim();
+    const btn     = document.getElementById('submitBtn');
+
+    if (!name || !phone || !course) {
+      showToast('⚠️ Please fill in Name, Phone and Course.', 'error');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+    try {
+      const res = await fetch('/api/enroll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, course, message }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        showToast(`✅ Thank you, ${name}! We'll call you shortly.`, 'success');
+        document.getElementById('name').value    = '';
+        document.getElementById('phone').value   = '';
+        document.getElementById('course').value  = '';
+        document.getElementById('message').value = '';
+      } else {
+        showToast(`❌ ${data.error || 'Something went wrong. Please try again.'}`, 'error');
+      }
+    } catch (err) {
+      console.error(err);
+      showToast('❌ Network error. Please check your connection.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Submit Enrollment Request';
+    }
+  }
+</script>
+
+</body>
+</html>
